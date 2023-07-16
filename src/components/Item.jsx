@@ -45,7 +45,7 @@ export default function Item({
               handleComplete(item.id, complete);
             }}
           />
-          <p className={`text-lg ${complete ? "text-[#ccc]" : ""}`}>
+          <p className={`${complete ? "text-[#ccc]" : ""}`}>
             {item.task}
           </p>
         </div>

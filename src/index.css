@@ -8,7 +8,7 @@
 body {
   background-color: #221f39;
   font-family: "Cairo", sans-serif;
-  animation: fadeIn 2s forwards;
+  
 }
 
 @keyframes fadeIn {

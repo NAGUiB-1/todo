@@ -31,6 +31,9 @@ export const TodoSlice = createSlice({
           : "";
       });
     },
+    lsUpdate : (state, action) => {
+      state.todo = action.payload
+    }
     /*  incrementByValue : (state, action) => {
       state.count += action.payload
     }
@@ -40,6 +43,6 @@ export const TodoSlice = createSlice({
 
 
 
-export const { addItem, deleteItem, editItem, complete, clearCompleted } =
+export const { addItem, deleteItem, editItem, complete, clearCompleted, lsUpdate } =
   TodoSlice.actions;
 export default TodoSlice.reducer;

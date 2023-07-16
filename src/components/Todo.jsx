@@ -8,6 +8,7 @@ import {
   deleteItem,
   editItem,
   complete,
+  lsUpdate,
 } from "../redux/TodoSlice";
 import { GiLightBulb } from "react-icons/gi";
 import { MdModeNight } from "react-icons/md";
@@ -15,6 +16,8 @@ import { toggleTheme } from "../redux/ThemeSlice";
 export default function Todo() {
   let [status, setStatus] = useState("all");
   let data = useSelector((state) => state.todo.todo);
+  let [todoData, setTodoData] = useState(data);
+
   let theme = useSelector((state) => state.theme.theme);
   let [task, setTask] = useState("");
   let dispatch = useDispatch();
@@ -55,15 +58,22 @@ export default function Todo() {
     dispatch(toggleTheme());
   };
   useEffect(() => {
-    if(theme == 'dark' ) {
-      document.querySelectorAll(".app")[0].style.backgroundColor = "#221f39"
-    }else {
-      document.querySelectorAll(".app")[0].style.backgroundColor = "white"
-      
+    if (theme == "dark") {
+      document.querySelectorAll(".app")[0].style.backgroundColor = "#221f39";
+    } else {
+      document.querySelectorAll(".app")[0].style.backgroundColor = "white";
     }
-    
-
   }, [theme]);
+
+  useEffect(() => {
+    const lsData = window.localStorage.getItem("myData");
+    if (lsData !== null) dispatch(lsUpdate(JSON.parse(lsData)));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("myData", JSON.stringify(data));
+  }, [data]);
+
   return (
     <div
       className={`z-10 absolute ${
@@ -73,7 +83,7 @@ export default function Todo() {
       <div className=" flex justify-between items-center mb-5 text-white">
         <h1 className="font-extrabold text-4xl ">TODO </h1>
         {theme == "dark" ? (
-          <GiLightBulb onClick={() => handleTheme()} size={25} fill='yellow'/>
+          <GiLightBulb onClick={() => handleTheme()} size={25} fill="yellow" />
         ) : (
           <MdModeNight onClick={() => handleTheme()} size={25} />
         )}

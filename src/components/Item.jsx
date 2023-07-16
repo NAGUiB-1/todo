@@ -1,6 +1,6 @@
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useRef } from "react";
 export default function Item({
   item,
   handleEditItem,
@@ -8,6 +8,7 @@ export default function Item({
   handleDeleteItem,
   theme,
 }) {
+  let ref = useRef(null);
   let [complete, setComplete] = useState(item.complete);
   let [edit, setEdit] = useState(false);
   let [value, setValue] = useState(item.task);
@@ -17,8 +18,18 @@ export default function Item({
     handleEditItem(item.id, value);
     setEdit(false);
   };
+  let handleEdit = () => {
+    setEdit(true);
+    setTimeout(function() {
+      ref.current.focus();
+    }, 10);
+  };
   return (
-    <div className={`${theme=='dark'? 'bg-[#221f60]' : 'bg-[whitesmoke]'} p-5 border-b-2 border-[rgba(255,255,255,.4)] flex flex-col justify-start gap-2 sm:h-[80px] lg:h-[90px] lg:text-xl`}>
+    <div
+      className={`${
+        theme == "dark" ? "bg-[#221f60]" : "bg-[whitesmoke]"
+      } p-5 border-b-2 border-[rgba(255,255,255,.4)] flex flex-col justify-start gap-2 sm:h-[80px] lg:h-[90px] lg:text-xl`}
+    >
       <div
         className={` flex justify-between
  ${item.complete ? "line-through" : ""} 
@@ -34,9 +45,7 @@ export default function Item({
               handleComplete(item.id, complete);
             }}
           />
-          <p
-            className={`text-lg ${complete ? "text-[#ccc]" : ""}`}
-          >
+          <p className={`text-lg ${complete ? "text-[#ccc]" : ""}`}>
             {item.task}
           </p>
         </div>
@@ -44,12 +53,12 @@ export default function Item({
         <div className="flex gap-2 justify-center items-center ">
           <BiEdit
             size={25}
-            onClick={() => setEdit(true)}
-            fill={`${theme=='dark' ? 'rgba(2555,255,255,.6)' : '#ccc' } `}
+            onClick={() => handleEdit()}
+            fill={`${theme == "dark" ? "rgba(2555,255,255,.6)" : "#ccc"} `}
           />
           <AiOutlineCloseCircle
             size={25}
-            fill={`${theme=='dark' ? 'rgba(2555,255,255,.6)' : '#ccc' } `}
+            fill={`${theme == "dark" ? "rgba(2555,255,255,.6)" : "#ccc"} `}
             onClick={() => handleDeleteItem(item.id)}
           />
         </div>
@@ -63,6 +72,7 @@ export default function Item({
             className="w-full bg-transparent border-2 border-blue-500 rounded-xl p-2"
             onChange={(e) => setValue(e.target.value)}
             value={value}
+            ref={ref}
           />
         </form>
       ) : (

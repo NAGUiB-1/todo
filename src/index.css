@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  transition:all .4s ease-in-out;
+}
+body {
+  background-color: #221f39;
+  font-family: "Cairo", sans-serif;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity:0
+  }
+  to {
+    opacity:1
+  }
+}
+div{
+  
+animation: slide .7s forwards;
+}
+
+@keyframes slide {
+  from {
+    margin-left: 800px;
+    opacity:0;
+  }
+  to {
+   margin-left: 0;
+    opacity:1;
+  }
+}
+.app {
+  background-color: #221f39;
+  position: relative;
+  height: 100vh;
+}
+.app:after {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  content: "";
+  width: 100%;
+  height: 33vh;
+  background-image: url("./assets/bg-mobile-dark.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+
+  width: 1.3rem;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  max-height: 1.3rem;
+  border: 0.15em solid #ccc;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.8em;
+  height: 0.8em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: white;
+}
+input[type="checkbox"]:checked {
+  background-color: blue;
+}
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+/*
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+*/
+input[type="checkbox"]:disabled {
+  --form-control-color: var(--form-control-disabled);
+
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
+}

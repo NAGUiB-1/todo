@@ -1,2 +1,11 @@
-# todo
-Todo App with React.js , Redux toolkit and Tailwindcss for Frontend Mentor Challenge 
+# Todo App 
+
+> Frontend Mentor Challenge 
+### Tools :
+ - React js
+ - Tailwindcss
+ - Redux toolkit 
+> Created by : [**Islam Naguib**](https://eslamnaguib.vercel.app)
+
+
+> Live preview : [**Todo**](https://en-todo.vercel.app)

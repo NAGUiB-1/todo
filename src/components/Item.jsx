@@ -28,7 +28,7 @@ export default function Item({
     <div
       className={`${
         theme == "dark" ? "bg-[#221f60]" : "bg-[whitesmoke]"
-      } p-5 border-b-2 border-[rgba(255,255,255,.4)] flex flex-col justify-start gap-2 sm:h-[80px] lg:h-[90px] lg:text-xl`}
+      } p-5 border-b-2 border-[rgba(255,255,255,.4)] flex flex-col justify-start gap-4 lg:text-xl`}
     >
       <div
         className={` flex justify-between

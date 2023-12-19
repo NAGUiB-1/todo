@@ -20,7 +20,7 @@ export default function Item({
   };
   let handleEdit = () => {
     setEdit(true);
-    setTimeout(function() {
+    setTimeout(function () {
       ref.current.focus();
     }, 10);
   };
@@ -39,13 +39,17 @@ export default function Item({
           <input
             type="checkbox"
             className=" "
-            checked={complete}
+            defaultChecked={complete}
             onClick={() => {
               setComplete(!complete);
               handleComplete(item.id, complete);
             }}
           />
-          <p className={`${complete ? "text-[#ccc]" : ""}`}>
+          <p
+            className={`font-mono font-extrabold ${
+              complete ? "text-[#ccc]" : ""
+            }`}
+          >
             {item.task}
           </p>
         </div>
@@ -54,12 +58,16 @@ export default function Item({
           <BiEdit
             size={25}
             onClick={() => handleEdit()}
-            fill={`${theme == "dark" ? "rgba(2555,255,255,.6)" : "#ccc"} `}
+            className={`cursor-pointer hover:text-green-500 ${
+              theme == "dark" ? "text-[rgba(2555,255,255,.6)]" : "text-[#333]"
+            } `}
           />
           <AiOutlineCloseCircle
             size={25}
-            fill={`${theme == "dark" ? "rgba(2555,255,255,.6)" : "#ccc"} `}
             onClick={() => handleDeleteItem(item.id)}
+            className={`cursor-pointer hover:text-red-500 ${
+              theme == "dark" ? "text-[rgba(2555,255,255,.6)]" : "text-[#333]"
+            } `}
           />
         </div>
       </div>

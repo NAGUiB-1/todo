@@ -103,7 +103,7 @@ export default function Todo() {
         <input type="submit" className="w-[60%] bg-gray-800 p-2 text-white font-bold text-lg rounded-lg" value="Add" />
         */}
       </form>
-      <div className=" flex flex-col mt-3 max-h-[55vh] overflow-y-auto relative rounded-xl ">
+      <div className=" flex flex-col mt-3 max-h-[55vh] overflow-y-auto relative rounded-xl overflow-hidden">
         {status == "all"
           ? data.map((item) => (
               <Item
@@ -146,39 +146,48 @@ export default function Todo() {
               ))
           : ""}
         <div
-          className={`${
+          className={` font-extrabold ${
             theme == "dark" ? "bg-[#221f60]" : "bg-[whitesmoke]"
           } p-5 border-[#ccc] flex justify-between items-center sticky bottom-0 ${
-            theme == "dark" ? "text-[#ccc] " : "text-[#ccc]"
+            theme == "dark" ? "text-[#ccc] " : "text-[#333]"
           } `}
         >
           <p className=" ">
             {data.filter((e) => e.complete == false).length} items left
           </p>
-          <button className=" " onClick={() => handleClearCompleted()}>
+          <button
+            className=" hover:text-red-600 hover:bg-transparent bg-red-500 text-white p-1 rounded"
+            onClick={() => handleClearCompleted()}
+          >
             Clear Completed
           </button>
         </div>
       </div>
       <div
-        className={` flex justify-between mt-5 ${
+        className={` flex justify-between mt-5 font-extrabold ${
           theme == "dark" ? "bg-[#221f60]" : "bg-[whitesmoke]"
         } p-5 border-[#ccc] rounded-xl`}
       >
         <button
-          className={`${status == "all" ? "text-blue-500" : ""}`}
+          className={`hover:text-blue-500 ${
+            status == "all" ? "text-blue-500" : ""
+          }`}
           onClick={() => setStatus("all")}
         >
           All
         </button>
         <button
-          className={`${status == "active" ? "text-blue-500" : ""}`}
+          className={`hover:text-blue-500 ${
+            status == "active" ? "text-blue-500" : ""
+          }`}
           onClick={() => setStatus("active")}
         >
           Active
         </button>
         <button
-          className={`${status == "completed" ? "text-blue-500" : ""}`}
+          className={`hover:text-blue-500 ${
+            status == "completed" ? "text-blue-500" : ""
+          }`}
           onClick={() => setStatus("completed")}
         >
           Completed
